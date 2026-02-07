@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="ROLLING"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- <file>/mnt/efs/logs/paymentPages.log</file> -->
+		<file>/media/tmp/logs/pg/paymentpages.log</file>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+
+			<!-- <fileNamePattern>/mnt/efs/logs/paymentPages.%d{dd-MMM-yyyy-HH}.%i.log</fileNamePattern> -->
+			<fileNamePattern>/media/tmp/logs/pg/paymentpages.%d{dd-MMM-yyyy-HH}.%i.log
+			</fileNamePattern>
+
+			<maxFileSize>10MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>1GB</totalSizeCap>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %X{messageId} %-5p %C{1}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="ROLLING" />
+	</root>
+</configuration>
